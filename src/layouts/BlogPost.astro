@@ -3,7 +3,6 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.tsx';
 
 type Props = CollectionEntry<'blog'>['data'];
@@ -65,11 +64,15 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				<div class="prose">
 					<div class="title">
 						<div class="date">
-							<FormattedDate date={pubDate} />
+							<time datetime={new Date(pubDate).toISOString()}>
+							  {new Date(pubDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+							</time>
 							{
 								updatedDate && (
 									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
+										Last updated on <time datetime={new Date(updatedDate).toISOString()}>
+										  {new Date(updatedDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+										</time>
 									</div>
 								)
 							}
