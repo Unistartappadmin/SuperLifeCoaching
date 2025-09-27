@@ -1,0 +1,97 @@
+---
+// FAQItem.astro - Individual FAQ item with expand/collapse functionality
+export interface Props {
+  question: string;
+  answer: string;
+  index: number;
+  defaultOpen?: boolean;
+}
+
+const { question, answer, index, defaultOpen = false } = Astro.props;
+---
+
+<div class="group border border-gray-200 rounded-2xl bg-white hover:border-[#D4AF37]/30 transition-all duration-300 hover:shadow-sm">
+  <button
+    class="faq-trigger w-full text-left p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]/60 rounded-2xl"
+    aria-expanded={defaultOpen ? "true" : "false"}
+    aria-controls={`faq-answer-${index}`}
+    data-faq-trigger
+  >
+    <div class="flex items-center justify-between gap-4">
+      <h3 class="text-lg font-semibold text-ink pr-4 leading-relaxed">
+        {question}
+      </h3>
+      <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gray-100 group-hover:bg-[#D4AF37]/10 flex items-center justify-center transition-all duration-300">
+        <svg 
+          class="faq-icon w-5 h-5 text-gray-600 group-hover:text-[#D4AF37] transition-all duration-300" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path class="horizontal-line" d="M5 12h14"/>
+          <path class="vertical-line" d="M12 5v14"/>
+        </svg>
+      </div>
+    </div>
+  </button>
+  
+  <div 
+    id={`faq-answer-${index}`}
+    class="faq-content overflow-hidden transition-all duration-300 ease-in-out"
+    style={`max-height: ${defaultOpen ? '1000px' : '0'};`}
+    aria-hidden={defaultOpen ? "false" : "true"}
+  >
+    <div class="px-6 pb-6 pt-0">
+      <div class="prose prose-lg max-w-none">
+        <p class="text-gray-700 leading-relaxed">{answer}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const triggers = document.querySelectorAll('[data-faq-trigger]') as NodeListOf<HTMLButtonElement>;
+  
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', function(this: HTMLButtonElement) {
+      const content = this.parentNode?.querySelector('.faq-content') as HTMLElement;
+      const icon = this.querySelector('.faq-icon') as SVGElement;
+      const verticalLine = icon?.querySelector('.vertical-line') as SVGElement;
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      
+      if (!content || !icon || !verticalLine) return;
+
+      if (isExpanded) {
+        verticalLine.style.opacity = '0';
+      }
+      
+      if (isExpanded) {
+        // Close
+        content.style.maxHeight = '0';
+        content.setAttribute('aria-hidden', 'true');
+        this.setAttribute('aria-expanded', 'false');
+        verticalLine.style.opacity = '1';
+      } else {
+        // Open
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.setAttribute('aria-hidden', 'false');
+        this.setAttribute('aria-expanded', 'true');
+        verticalLine.style.opacity = '0';
+      }
+    });
+  });
+});
+</script>
+
+<style>
+.faq-icon .vertical-line {
+  transition: opacity 0.3s ease;
+}
+
+.faq-content {
+  transition: max-height 0.3s ease-in-out;
+}
+</style>

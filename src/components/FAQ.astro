@@ -1,0 +1,93 @@
+---
+// FAQ.astro - Main FAQ section with all 6 questions
+import FAQItem from './FAQItem.astro';
+
+// FAQ data
+const faqs = [
+  {
+    question: "What is life coaching, and how does it work?",
+    answer: "Life coaching is a collaborative process where I help you identify your goals, overcome obstacles, and create actionable plans to achieve the life you desire. Through personalized sessions, we'll work together to uncover limiting beliefs, develop new habits, and build the confidence needed to make lasting changes. Think of me as your guide, accountability partner, and cheerleader on your journey to transformation."
+  },
+  {
+    question: "How is life coaching different from therapy?",
+    answer: "While therapy often focuses on healing past traumas and addressing mental health issues, life coaching is future-oriented. It's about helping you set and achieve goals, improve specific areas of your life, and unlock your full potential. Coaching is action-driven and focuses on personal growth, mindset shifts, and creating tangible results."
+  },
+  {
+    question: "Who is life coaching for?",
+    answer: "Life coaching is for anyone who feels stuck, overwhelmed, or unsure of their next steps. Whether you're looking to improve your career, relationships, health, or overall mindset, coaching can help. It's also ideal for high achievers who want to reach the next level of success or clarity in their lives."
+  },
+  {
+    question: "How do I know if I need a life coach?",
+    answer: "If you're feeling stuck, unmotivated, or unsure about your direction in life, a life coach can help. If you have big dreams but don't know how to achieve them, or if you're ready to make a change but need guidance and accountability, coaching is for you. It's also helpful if you're facing a major life transition or simply want to grow and improve."
+  },
+  {
+    question: "What can I expect from a coaching session?",
+    answer: "Each session is tailored to your unique needs and goals. We'll start by identifying what you want to achieve, then dive into strategies and action steps to get you there. Sessions are a mix of deep conversations, mindset work, and practical tools to help you move forward. You'll leave each session with clarity, motivation, and a clear plan of action."
+  },
+  {
+    question: "How long does it take to see results?",
+    answer: "Results vary depending on your goals, commitment, and the complexity of the challenges you're facing. Some clients see immediate shifts in mindset and clarity, while others notice significant changes over a few months. Consistency and openness to the process are key to achieving lasting results."
+  }
+];
+---
+
+<section aria-labelledby="faq-title" class="bg-white py-16 md:py-24">
+  <div class="mx-auto max-w-4xl safe-x">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <p class="text-base font-semibold tracking-widest text-[#D4AF37] uppercase mb-4 font-serif italic">
+        Frequently Asked Questions
+      </p>
+      <h2 id="faq-title" class="text-4xl md:text-5xl font-bold tracking-tight text-ink mb-6">
+        FAQ
+      </h2>
+      <div class="w-16 h-1 bg-[#D4AF37] mx-auto rounded-full mb-8"></div>
+      
+      <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        Everything you need to know about life coaching and how it can transform your journey.
+      </p>
+    </div>
+
+    <!-- FAQ Items -->
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <FAQItem
+          question={faq.question}
+          answer={faq.answer}
+          index={index}
+          defaultOpen={index === 0}
+        />
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="text-center mt-16 pt-8 border-t border-gray-100">
+      <div class="mb-6">
+        <h3 class="text-xl font-semibold text-ink mb-2">Still have questions?</h3>
+        <p class="text-gray-600">I'm here to help you get the answers you need.</p>
+      </div>
+      
+      <a
+        href="#book-call"
+        class="group inline-flex items-center gap-2 rounded-full bg-black text-white px-8 py-4 text-base font-semibold shadow-lg ring-1 ring-[#D4AF37]/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 hover:ring-2 hover:ring-[#D4AF37]/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]/60 active:translate-y-px"
+        aria-label="Book a free consultation to ask your questions"
+      >
+        Book a Free Consultation
+        <svg 
+          class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          aria-hidden="true"
+        >
+          <path 
+            d="M5 12h14M13 5l7 7-7 7" 
+            stroke="currentColor" 
+            stroke-width="2" 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

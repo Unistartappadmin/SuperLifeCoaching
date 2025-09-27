@@ -1,0 +1,62 @@
+---
+// TestimonialCard.astro - Individual testimonial card component
+export interface Props {
+  quote: string;
+  name: string;
+  role?: string;
+  avatar?: string;
+}
+
+const { quote, name, role, avatar } = Astro.props;
+---
+
+<div class="group bg-white rounded-2xl p-6 md:p-8 shadow-sm ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:ring-2 hover:ring-[#D4AF37]/50 h-full flex flex-col">
+  <!-- Quote -->
+  <div class="flex-1 mb-6">
+    <!-- Quote Icon -->
+    <div class="mb-4">
+      <svg class="w-8 h-8 text-[#D4AF37] opacity-60" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+      </svg>
+    </div>
+    
+    <!-- Quote Text -->
+    <blockquote class="text-lg md:text-xl leading-relaxed text-gray-700 font-medium italic line-clamp-5 md:line-clamp-7">
+      "{quote}"
+    </blockquote>
+  </div>
+
+  <!-- Author Info -->
+  <div class="flex items-center gap-4 mt-auto">
+    <!-- Avatar -->
+    <div class="flex-shrink-0">
+      {avatar ? (
+        <img 
+          src={avatar} 
+          alt={`${name}'s photo`}
+          class="w-12 h-12 rounded-full object-cover ring-2 ring-[#D4AF37]/20 group-hover:ring-[#D4AF37]/40 transition-all duration-300"
+          loading="lazy"
+        />
+      ) : (
+        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/10 flex items-center justify-center ring-2 ring-[#D4AF37]/20 group-hover:ring-[#D4AF37]/40 transition-all duration-300">
+          <svg class="w-6 h-6 text-[#D4AF37]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+      )}
+    </div>
+
+    <!-- Name and Role -->
+    <div class="min-w-0 flex-1">
+      <p class="text-base font-semibold text-ink truncate">{name}</p>
+      {role && (
+        <p class="text-sm text-gray-500 truncate">{role}</p>
+      )}
+    </div>
+
+    <!-- Decorative Element -->
+    <div class="flex-shrink-0">
+      <div class="w-2 h-2 rounded-full bg-[#D4AF37] opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+---
+import "../styles/global.css";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header";
+import Footer from "../components/Footer.astro";
+---
+
+<html lang="en">
+    <head>
+        <BaseHead
+            title="My Astro Site"
+            description="Welcome to my Astro site!"
+        />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Astro Site</title>
+    </head>
+    <body class="min-h-screen flex flex-col">
+        <Header client:load />
+        <main class="flex-grow">
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>

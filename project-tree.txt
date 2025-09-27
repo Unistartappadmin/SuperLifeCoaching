@@ -1,0 +1,73 @@
+.
+├── .astro
+│   ├── collections
+│   │   └── blog.schema.json
+│   ├── content-assets.mjs
+│   ├── content-modules.mjs
+│   ├── content.d.ts
+│   ├── data-store.json
+│   ├── settings.json
+│   └── types.d.ts
+├── .DS_Store
+├── .gitignore
+├── .vscode
+│   ├── extensions.json
+│   └── launch.json
+├── astro.config.mjs
+├── package-lock.json
+├── package.json
+├── project-tree.txt
+├── public
+│   ├── favicon.svg
+│   ├── fonts
+│   │   ├── atkinson-bold.woff
+│   │   └── atkinson-regular.woff
+│   └── images
+│       └── coach.jpg
+├── README.md
+├── src
+│   ├── .DS_Store
+│   ├── assets
+│   │   ├── blog-placeholder-1.jpg
+│   │   ├── blog-placeholder-2.jpg
+│   │   ├── blog-placeholder-3.jpg
+│   │   ├── blog-placeholder-4.jpg
+│   │   ├── blog-placeholder-5.jpg
+│   │   └── blog-placeholder-about.jpg
+│   ├── components
+│   │   ├── BaseHead.astro
+│   │   ├── coach.astro
+│   │   ├── faq.astro
+│   │   ├── Footer.astro
+│   │   ├── Header.tsx
+│   │   ├── Hero.astro
+│   │   ├── mycoaching.astro
+│   │   ├── Pricing.astro
+│   │   ├── TestimonialCard.astro
+│   │   ├── Testimonials.astro
+│   │   └── WorkWithMe.astro
+│   ├── consts.ts
+│   ├── content
+│   │   └── blog
+│   │       ├── first-post.md
+│   │       ├── markdown-style-guide.md
+│   │       ├── second-post.md
+│   │       ├── third-post.md
+│   │       └── using-mdx.mdx
+│   ├── content.config.ts
+│   ├── layouts
+│   │   ├── BlogPost.astro
+│   │   └── SiteLayout.astro
+│   ├── pages
+│   │   ├── about.astro
+│   │   ├── blog
+│   │   │   ├── [...slug].astro
+│   │   │   └── index.astro
+│   │   ├── index.astro
+│   │   └── rss.xml.js
+│   └── styles
+│       └── global.css
+└── tsconfig.json
+
+16 directories, 54 files
+16 directories, 54 files

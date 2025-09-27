@@ -1,0 +1,94 @@
+---
+// Testimonials.astro - Main testimonials section
+import TestimonialCard from './TestimonialCard.astro';
+
+// Testimonials data - can be moved to content collections later
+const testimonials = [
+  {
+    quote: "Sorin helped me shift my mindset and finally take action on my goals. His coaching gave me clarity and confidence!",
+    name: "Brittany Foxx",
+    role: "Entrepreneur"
+  },
+  {
+    quote: "I was feeling stuck in life, but after working with Sorin, I now have a clear direction and a renewed sense of purpose!",
+    name: "Edward Woo", 
+    role: "Marketing Professional"
+  },
+  {
+    quote: "Working with Sorin has been truly life-changing. His coaching helped me gain clarity, build confidence, and take action toward my goals.",
+    name: "Samantha Gilbert",
+    role: "Creative Director"
+  }
+];
+---
+
+<section aria-labelledby="testimonials-title" class="relative py-20 md:py-28">
+  <!-- Full-width gradient background -->
+  <div 
+    aria-hidden="true" 
+    class="absolute inset-0 w-screen bg-gradient-to-br from-slate-50 via-white to-slate-100"
+    style="left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;"
+  ></div>
+  
+  <!-- Subtle geometric pattern overlay - full width -->
+  <div 
+    aria-hidden="true" 
+    class="absolute inset-0 w-screen opacity-5"
+    style="left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background-image: radial-gradient(circle at 75% 25%, #D4AF37 2px, transparent 2px), radial-gradient(circle at 25% 75%, #D4AF37 1px, transparent 1px); background-size: 80px 80px, 60px 60px;"
+  ></div>
+
+  <div class="relative mx-auto max-w-7xl safe-x">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <p class="text-base font-semibold tracking-widest text-[#D4AF37] uppercase mb-4">
+        Reviews
+      </p>
+      <h2 id="testimonials-title" class="text-4xl md:text-5xl font-bold tracking-tight text-ink mb-6">
+        Client Success Stories
+      </h2>
+      <div class="w-16 h-1 bg-[#D4AF37] mx-auto rounded-full mb-8"></div>
+      
+      <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        Real transformations from real people. See how coaching has made a difference in their lives.
+      </p>
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="grid auto-rows-fr gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+      {testimonials.map((testimonial) => (
+        <div class="h-full">
+          <TestimonialCard
+            quote={testimonial.quote}
+            name={testimonial.name}
+            role={testimonial.role}
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-16">
+      <a
+        href="#book-call"
+        class="group inline-flex items-center gap-2 rounded-full bg-black text-white px-8 py-4 text-base font-semibold shadow-lg ring-1 ring-[#D4AF37]/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 hover:ring-2 hover:ring-[#D4AF37]/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]/60 active:translate-y-px"
+        aria-label="Start your transformation journey"
+      >
+        Start Your Transformation
+        <svg 
+          class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          aria-hidden="true"
+        >
+          <path 
+            d="M5 12h14M13 5l7 7-7 7" 
+            stroke="currentColor" 
+            stroke-width="2" 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

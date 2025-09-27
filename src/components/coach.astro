@@ -1,0 +1,49 @@
+---
+const {
+  name = 'Sorin Lazar',
+  role = 'Coach',
+  bio = `Hi, Im Sorin Lazar, a tireless explorer of human mind, curious and endlessly fascinated by how we function. From a young age, I found myself drawn to people’s stories, curious about what drives them, what holds them back, and what makes them truly come alive. I believe that every person has a unique story to tell, and within that story lies the key to their growth, transformation, and fulfilment.`,
+  photo = '/images/coach.jpg',
+  ctaHref = '/about#story',
+  ctaLabel = 'Read My Story',
+} = Astro.props;
+---
+
+<section aria-labelledby="coach-title" class="bg-white">
+  <div class="mx-auto max-w-7xl safe-x pt-8 pb-16 md:pt-16 md:pb-20">
+    <div class="grid md:grid-cols-12 items-center gap-10 md:gap-12">
+      {/* Photo */}
+      <div class="md:col-span-4">
+        <figure class="relative overflow-hidden rounded-2xl ring-1 ring-black/10 shadow-sm">
+          <img
+            src={photo}
+            alt={`${name} portrait`}
+            loading="lazy"
+            class="mx-auto w-64 md:w-80 h-auto object-cover rounded-xl shadow-md transition-transform duration-300 hover:scale-105"
+          />
+        </figure>
+      </div>
+
+      {/* Content */}
+      <div class="md:col-span-8">
+        <p class="mb-2 text-xs sm:text-sm font-medium tracking-widest text-[#D4AF37] uppercase">{role}</p>
+        <h2 id="coach-title" class="text-4xl md:text-5xl font-extrabold tracking-tight text-ink">{name}</h2>
+        <div class="my-6 h-0.5 w-12 rounded-full bg-[#D4AF37]"></div>
+
+        <p class="max-w-prose text-base md:text-lg leading-relaxed text-gray-600">{bio}</p>
+
+        <div class="mt-8 flex justify-center md:justify-start">
+          <a
+            href={ctaHref}
+            class="group inline-flex items-center justify-center rounded-full bg-gray-50 text-ink px-6 py-3 md:px-7 md:py-3.5 text-base font-semibold shadow-sm ring-1 ring-[#D4AF37]/30 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:bg-[#D4AF37]/10 hover:ring-2 hover:ring-[#D4AF37]/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]/60 active:translate-y-px"
+          >
+            {ctaLabel}
+            <svg class="ml-2 w-4 h-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
