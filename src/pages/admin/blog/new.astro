@@ -1,0 +1,14 @@
+---
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+import BlogForm from "../../../components/admin/BlogForm";
+---
+
+<AdminLayout title="Create Blog Post | Admin Panel" activePage="blog">
+  <div class="space-y-8">
+    <div>
+      <h1 class="text-3xl font-bold text-gray-900">Create New Post</h1>
+      <p class="text-sm text-gray-600 mt-2">Draft and publish a new article.</p>
+    </div>
+    <BlogForm client:load mode="create" />
+  </div>
+</AdminLayout>

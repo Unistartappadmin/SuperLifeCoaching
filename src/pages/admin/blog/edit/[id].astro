@@ -1,0 +1,16 @@
+---
+import AdminLayout from "../../../../layouts/AdminLayout.astro";
+import BlogForm from "../../../../components/admin/BlogForm";
+
+const { id } = Astro.params;
+---
+
+<AdminLayout title="Edit Blog Post | Admin Panel" activePage="blog">
+  <div class="space-y-8">
+    <div>
+      <h1 class="text-3xl font-bold text-gray-900">Edit Post</h1>
+      <p class="text-sm text-gray-600 mt-2">Update your article content and publish settings.</p>
+    </div>
+    <BlogForm client:load mode="edit" postId={id} />
+  </div>
+</AdminLayout>

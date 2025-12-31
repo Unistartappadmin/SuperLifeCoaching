@@ -1,115 +1,151 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import Header from '../../components/Header.tsx';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { createSupabaseServerClient } from '../../lib/supabase';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const supabase = createSupabaseServerClient(Astro.cookies);
+const { data: posts } = await supabase
+  .from("blog_posts")
+  .select("id,title,slug,excerpt,content,featured_image,category,read_time,published_at,created_at")
+  .eq("published", true)
+  .order("published_at", { ascending: false, nullsLast: true });
+
+const sortedPosts = posts || [];
+
+const pageTitle = 'Blog - SuperLife Coaching';
+const pageDescription = 'Discover transformative wisdom and insights for your personal growth journey. Expert coaching advice, mindset shifts, and practical strategies for living your best life.';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header client:load />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<time datetime={new Date(post.data.pubDate).toISOString()}>
-											{new Date(post.data.pubDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-										</time>
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<SiteLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-white via-gray-50/50 to-white py-20 sm:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-4xl mx-auto" data-animate="fade-in">
+        <!-- Decorative Element -->
+        <div class="mb-6 inline-block">
+          <div class="w-16 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#0A0A0A] mb-6 tracking-tight leading-tight">
+          Insights & <span class="text-[#D4AF37]">Inspiration</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-xl sm:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+          Discover transformative wisdom for your personal growth journey
+        </p>
+
+        <!-- Decorative Element -->
+        <div class="mt-8 inline-block">
+          <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Background Decoration -->
+    <div class="absolute top-0 right-0 -z-10 opacity-5">
+      <svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="300" cy="300" r="250" stroke="#D4AF37" stroke-width="2"/>
+        <circle cx="300" cy="300" r="200" stroke="#D4AF37" stroke-width="2"/>
+        <circle cx="300" cy="300" r="150" stroke="#D4AF37" stroke-width="2"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Blog Grid Section -->
+  <section class="py-16 sm:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Stats or Featured Badge -->
+      <div class="text-center mb-12" data-animate="fade-in">
+        <p class="text-sm text-gray-500 uppercase tracking-wider font-semibold">
+          {sortedPosts.length} Articles • Weekly Updates
+        </p>
+      </div>
+
+      <!-- Blog Grid -->
+      {sortedPosts.length === 0 ? (
+        <div class="text-center py-20">
+          <svg
+            class="mx-auto h-24 w-24 text-gray-300 mb-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+            ></path>
+          </svg>
+          <h3 class="text-2xl font-semibold text-gray-900 mb-2">No posts yet</h3>
+          <p class="text-gray-600">Check back soon for inspiring content!</p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+          {sortedPosts.map((post, index) => (
+            <BlogCard
+              title={post.title}
+              excerpt={post.excerpt || ""}
+              category={post.category || "Personal Growth"}
+              pubDate={new Date(post.published_at || post.created_at)}
+              readTime={`${post.read_time || 5} min read`}
+              featuredImage={post.featured_image || undefined}
+              slug={post.slug}
+              index={index}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-animate="fade-in">
+      <h2 class="text-3xl sm:text-4xl font-bold text-[#0A0A0A] mb-6">
+        Ready to Transform Your Life?
+      </h2>
+      <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+        Take the first step towards your best self with personalized coaching
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/booking"
+          class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-[#0A0A0A] rounded-full hover:bg-[#D4AF37] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+        >
+          Book Your Session
+        </a>
+        <a
+          href="/services"
+          class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-[#0A0A0A] bg-white border-2 border-[#0A0A0A] rounded-full hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-300"
+        >
+          Explore Services
+        </a>
+      </div>
+    </div>
+  </section>
+</SiteLayout>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  [data-animate="fade-in"] {
+    animation: fade-in 0.8s ease-out forwards;
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

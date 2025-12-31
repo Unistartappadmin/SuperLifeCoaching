@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { cn } from "../../lib/utils";
-import { LayoutDashboard, Calendar, CreditCard, LogOut, Menu, X } from "lucide-react";
+import { LayoutDashboard, Calendar, CreditCard, FileText, LogOut, Menu, X } from "lucide-react";
 
 interface AdminSidebarProps {
-  activePage?: "dashboard" | "bookings" | "payments";
+  activePage?: "dashboard" | "bookings" | "payments" | "blog";
 }
 
 const iconMap = {
   dashboard: LayoutDashboard,
   bookings: Calendar,
   payments: CreditCard,
+  blog: FileText,
 };
 
 export default function AdminSidebar({ activePage = "dashboard" }: AdminSidebarProps) {
@@ -19,6 +20,7 @@ export default function AdminSidebar({ activePage = "dashboard" }: AdminSidebarP
     { name: "Dashboard", href: "/admin/dashboard", iconKey: "dashboard" as const, key: "dashboard" as const },
     { name: "Bookings", href: "/admin/bookings", iconKey: "bookings" as const, key: "bookings" as const },
     { name: "Payments", href: "/admin/payments", iconKey: "payments" as const, key: "payments" as const },
+    { name: "Blog Management", href: "/admin/blog", iconKey: "blog" as const, key: "blog" as const },
   ];
 
   const handleLogout = async () => {

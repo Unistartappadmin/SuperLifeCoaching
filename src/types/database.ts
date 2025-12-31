@@ -188,6 +188,51 @@ export type Database = {
           }
         ];
       };
+      blog_posts: {
+        Row: {
+          id: string;
+          title: string;
+          slug: string;
+          excerpt: string | null;
+          content: string;
+          featured_image: string | null;
+          category: string | null;
+          read_time: number | null;
+          published: boolean;
+          published_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          title: string;
+          slug: string;
+          excerpt?: string | null;
+          content: string;
+          featured_image?: string | null;
+          category?: string | null;
+          read_time?: number | null;
+          published?: boolean;
+          published_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          slug?: string;
+          excerpt?: string | null;
+          content?: string;
+          featured_image?: string | null;
+          category?: string | null;
+          read_time?: number | null;
+          published?: boolean;
+          published_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
       integration_tokens: {
         Row: {
           access_token: string | null;

@@ -1,0 +1,167 @@
+---
+interface Props {
+  title: string;
+  excerpt: string;
+  category: string;
+  pubDate: Date;
+  readTime: string;
+  featuredImage?: string;
+  slug: string;
+  index?: number;
+}
+
+const {
+  title,
+  excerpt,
+  category,
+  pubDate,
+  readTime,
+  featuredImage,
+  slug,
+  index = 0,
+} = Astro.props;
+
+// Validate slug
+if (!slug) {
+  console.error('BlogCard: slug is undefined for post:', title);
+}
+
+// Format date
+const formattedDate = pubDate ? pubDate.toLocaleDateString('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+}) : 'Unknown date';
+
+// Default featured image from Unsplash
+const defaultImage = `https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=450&fit=crop&auto=format&q=80`;
+const image = featuredImage || defaultImage;
+
+// Staggered animation delay
+const animationDelay = `${index * 100}ms`;
+---
+
+<article
+  class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-[#D4AF37]/20"
+  style={`animation-delay: ${animationDelay}`}
+  data-animate="fade-in-up"
+>
+  <a href={`/blog/${slug}`} class="block">
+    <!-- Featured Image -->
+    <div class="aspect-video overflow-hidden bg-gray-100">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Content -->
+    <div class="p-8">
+      <!-- Category Badge -->
+      <div class="mb-4">
+        <span
+          class="inline-block px-3 py-1 text-xs font-semibold text-[#D4AF37] border border-[#D4AF37]/30 rounded-full uppercase tracking-wider"
+        >
+          {category}
+        </span>
+      </div>
+
+      <!-- Title -->
+      <h3
+        class="text-2xl font-bold text-[#0A0A0A] mb-3 leading-tight group-hover:text-[#D4AF37] transition-colors duration-300"
+      >
+        {title}
+      </h3>
+
+      <!-- Excerpt -->
+      <p class="text-gray-600 mb-6 line-clamp-3 leading-relaxed">
+        {excerpt}
+      </p>
+
+      <!-- Meta Info -->
+      <div class="flex items-center justify-between text-sm text-gray-500">
+        <time datetime={pubDate.toISOString()} class="flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            ></path>
+          </svg>
+          {formattedDate}
+        </time>
+
+        <span class="flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+          {readTime}
+        </span>
+      </div>
+
+      <!-- Read More Arrow -->
+      <div class="mt-6 flex items-center text-[#D4AF37] font-semibold text-sm group-hover:gap-3 gap-2 transition-all duration-300">
+        <span>Read Article</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 8l4 4m0 0l-4 4m4-4H3"
+          ></path>
+        </svg>
+      </div>
+    </div>
+  </a>
+</article>
+
+<style>
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  [data-animate="fade-in-up"] {
+    animation: fade-in-up 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

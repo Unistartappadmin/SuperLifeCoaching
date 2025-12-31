@@ -1,20 +1,35 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import { createSupabaseServerClient } from '../../lib/supabase';
+import { sanitizeBlogHtml } from '../../utils/sanitizeHtml';
 
-export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.id },
-		props: post,
-	}));
+const slugParam = Astro.params.slug;
+const slug = Array.isArray(slugParam) ? slugParam.join('/') : slugParam;
+
+const supabase = createSupabaseServerClient(Astro.cookies);
+const { data: post } = await supabase
+  .from("blog_posts")
+  .select("*")
+  .eq("slug", slug)
+  .eq("published", true)
+  .single();
+
+if (!post) {
+  throw new Error(`Blog post not found for slug: ${slug}`);
 }
-type Props = CollectionEntry<'blog'>;
 
-const post = Astro.props;
-const { Content } = await render(post);
+const contentHtml = sanitizeBlogHtml(post.content || "");
 ---
 
-<BlogPost {...post.data}>
-	<Content />
+<BlogPost
+  title={post.title}
+  description={post.excerpt || ""}
+  excerpt={post.excerpt || ""}
+  pubDate={new Date(post.published_at || post.created_at)}
+  updatedDate={post.updated_at ? new Date(post.updated_at) : undefined}
+  featuredImage={post.featured_image || undefined}
+  category={post.category || "Personal Growth"}
+  readTime={`${post.read_time || 5} min read`}
+>
+  <div set:html={contentHtml} />
 </BlogPost>
