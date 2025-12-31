@@ -4,13 +4,14 @@
 
 <section
   aria-labelledby="hero-title"
-  class="relative bg-white overflow-hidden min-h-[60vh] sm:min-h-[60vh] md:min-h-[80vh] flex items-start pt-16 md:pt-24"
+  class="relative bg-white overflow-hidden h-[100vh] flex items-start pt-16 md:pt-24"
   style="padding-top: calc(env(safe-area-inset-top, 0px) + 4rem);"
 >
+  <!-- TEMP: hairline to debug hero height (remove after final layout review) -->
   <!-- Enhanced gradient background -->
   <div
     aria-hidden="true"
-    class="absolute inset-0 bg-gradient-to-b from-white via-gray-50/30 to-white"
+    class="absolute inset-0 bg-gradient-to-b  from-slate-50 to-white"
   >
   </div>
 
@@ -29,11 +30,11 @@
   >
   </div>
 
-  <div class="relative mx-auto max-w-[46rem] px-5 sm:px-6 text-center">
+  <div class="relative mx-auto pt-24 max-w-[46rem] px-5 sm:px-6 text-center">
     <!-- Pre-headline -->
     <div class="mb-8 animate-fade-in-up">
       <p
-        class="text-sm font-medium tracking-widest text-[#D4AF37] uppercase mb-2"
+        class="text-xs font-medium tracking-widest text-[#D4AF37] uppercase mb-2"
       >
         Life Coaching Excellence
       </p>
@@ -52,7 +53,7 @@
     <div
       class="mx-auto max-w-2xl mb-8 sm:mb-12 animate-fade-in-up [animation-delay:0.4s]"
     >
-      <p class="text-[clamp(1rem,3.8vw,1.25rem)] md:text-xl leading-relaxed text-gray-600">
+      <p class="leading-relaxed text-gray-600">
         Breakthrough, not just advice.
       </p>
     </div>
@@ -83,10 +84,10 @@
       </a>
 
       <a
-        href="#my-coaching"
+        href="/services"
         class="group w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white text-ink px-8 py-4 text-base font-semibold shadow-sm ring-1 ring-gray-300 hover:ring-2 hover:ring-[#D4AF37]/50 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]/60 active:translate-y-px"
       >
-        Learn More
+        View Our Services
         <svg
           class="ml-2 w-5 h-5 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5"
           viewBox="0 0 24 24"

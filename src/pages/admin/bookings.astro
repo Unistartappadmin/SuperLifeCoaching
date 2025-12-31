@@ -1,0 +1,47 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import BookingsTable from "../../components/admin/BookingsTable";
+import { createSupabaseServiceRoleClient } from "../../lib/supabase";
+
+export const prerender = false;
+
+const supabase = createSupabaseServiceRoleClient();
+
+const { data: bookings, error } = await supabase
+  .from("bookings")
+  .select(`
+    id,
+    session_date,
+    session_time,
+    duration,
+    service_type,
+    status,
+    payment_status,
+    notes,
+    created_at,
+    users (
+      id,
+      name,
+      email,
+      phone
+    )
+  `)
+  .order("session_date", { ascending: false });
+
+if (error) {
+  console.error("Error fetching bookings:", error);
+}
+---
+
+<AdminLayout title="Bookings | Admin Panel" activePage="bookings">
+  <div class="space-y-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-black">Bookings</h1>
+        <p class="text-gray-600 mt-1">Manage all coaching session bookings</p>
+      </div>
+    </div>
+
+    <BookingsTable client:load bookings={bookings || []} />
+  </div>
+</AdminLayout>

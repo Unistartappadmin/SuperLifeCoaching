@@ -1,0 +1,27 @@
+---
+import { createSupabaseServerClient } from "../../lib/supabase";
+import LoginForm from "../../components/admin/LoginForm";
+import BaseHead from "../../components/BaseHead.astro";
+
+export const prerender = false;
+
+const supabase = createSupabaseServerClient(Astro.cookies);
+const { data: { session } } = await supabase.auth.getSession();
+
+// Redirect if already logged in as admin
+if (session?.user?.user_metadata?.role === 'admin') {
+  return Astro.redirect('/admin/dashboard');
+}
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <BaseHead title="Admin Login | SuperLife Coaching" description="Admin login portal" />
+</head>
+<body class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+  <div class="max-w-md w-full">
+    <LoginForm client:only="react" />
+  </div>
+</body>
+</html>

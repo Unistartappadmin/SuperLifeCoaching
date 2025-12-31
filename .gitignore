@@ -15,7 +15,24 @@ pnpm-debug.log*
 
 # environment variables
 .env
-.env.production
+.env.*
+!.env.example
+.envrc
+
+# credentials and secrets
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*service-account*.json
+*credentials*.json
+*secret*.json
+.npmrc
+
+# local notes with secrets
+sup.txt
 
 # macOS-specific files
 .DS_Store

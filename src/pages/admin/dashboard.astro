@@ -1,0 +1,90 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import DashboardStats from "../../components/admin/DashboardStats";
+import RevenueChart from "../../components/admin/RevenueChart";
+import QuickActions from "../../components/admin/QuickActions";
+import { createSupabaseServiceRoleClient } from "../../lib/supabase";
+import { SERVICES } from "../../components/booking/service-data";
+
+export const prerender = false;
+
+const supabase = createSupabaseServiceRoleClient();
+
+// Fetch total bookings count
+const { count: totalBookings } = await supabase
+  .from("bookings")
+  .select("*", { count: "exact", head: true });
+
+// Fetch paid bookings to calculate revenue
+const { data: paidBookings } = await supabase
+  .from("bookings")
+  .select("service_type")
+  .eq("payment_status", "paid");
+
+const totalRevenue = paidBookings?.reduce((sum, b) =>
+  sum + (SERVICES[b.service_type]?.price || 0), 0) || 0;
+
+// Fetch upcoming sessions (next 30 days)
+const now = new Date();
+const future = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+const { count: upcomingSessions } = await supabase
+  .from("bookings")
+  .select("*", { count: "exact", head: true })
+  .gte("session_date", now.toISOString().split("T")[0])
+  .lte("session_date", future.toISOString().split("T")[0])
+  .in("status", ["confirmed", "pending"]);
+
+// Revenue trend data (last 30 days)
+const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+const { data: revenueTrend } = await supabase
+  .from("bookings")
+  .select("created_at, service_type")
+  .eq("payment_status", "paid")
+  .gte("created_at", thirtyDaysAgo.toISOString());
+
+// Group by day
+const revenueByDay: Record<string, number> = {};
+revenueTrend?.forEach((b) => {
+  const day = b.created_at.split("T")[0];
+  const price = SERVICES[b.service_type]?.price || 0;
+  revenueByDay[day] = (revenueByDay[day] || 0) + price;
+});
+
+const chartData = Object.entries(revenueByDay).map(([date, revenue]) => ({
+  date,
+  revenue,
+})).sort((a, b) => a.date.localeCompare(b.date));
+
+const stats = {
+  totalBookings: totalBookings || 0,
+  totalRevenue,
+  upcomingSessions: upcomingSessions || 0,
+};
+
+const quickActionsData = {
+  totalBookings,
+  totalRevenue,
+};
+---
+
+<AdminLayout title="Dashboard | Admin Panel" activePage="dashboard">
+  <div class="space-y-8">
+    <div class="space-y-3">
+      <h1 class="text-4xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent">Dashboard</h1>
+      <p class="text-gray-600 text-sm">Welcome back! Here's your coaching business overview.</p>
+    </div>
+
+    <!-- Stats Grid -->
+    <DashboardStats client:load stats={stats} />
+
+    <!-- Charts and Quick Actions -->
+    <div class="grid gap-8 lg:grid-cols-3 mt-6">
+      <div class="lg:col-span-2">
+        <RevenueChart client:load data={chartData} />
+      </div>
+
+      <!-- Quick Actions Card -->
+      <QuickActions client:load data={quickActionsData} />
+    </div>
+  </div>
+</AdminLayout>

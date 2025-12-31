@@ -1,0 +1,43 @@
+---
+import "../styles/global.css";
+import BaseHead from "../components/BaseHead.astro";
+import AdminSidebar from "../components/admin/AdminSidebar";
+import AdminHeader from "../components/admin/AdminHeader";
+
+interface Props {
+  title?: string;
+  description?: string;
+  activePage?: "dashboard" | "bookings" | "payments";
+}
+
+const {
+  title = "Admin Panel | SuperLife Coaching",
+  description = "SuperLife Coaching Admin Panel",
+  activePage = "dashboard"
+} = Astro.props;
+
+const user = Astro.locals.user;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body class="h-screen overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-50/50">
+    <div class="flex h-full overflow-hidden">
+      <!-- Sidebar -->
+      <AdminSidebar client:load activePage={activePage} />
+
+      <!-- Main Content Area -->
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <AdminHeader client:load user={user} />
+
+        <main class="flex-1 overflow-y-auto p-6 lg:p-8">
+          <div class="max-w-[1600px] mx-auto">
+            <slot />
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

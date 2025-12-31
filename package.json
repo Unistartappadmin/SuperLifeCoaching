@@ -3,23 +3,49 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --port 4322 --host",
     "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "preview": "astro preview --port 4322 --host",
+    "astro": "astro",
+    "supabase:test": "node ./scripts/test-supabase.mjs",
+    "test:emails": "tsx ./scripts/test-emails.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.6",
     "@astrojs/react": "^4.3.1",
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.6.0",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "@stripe/react-stripe-js": "^5.4.1",
+    "@stripe/stripe-js": "^8.5.3",
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.86.0",
     "@tailwindcss/vite": "^4.1.13",
+    "@tanstack/react-table": "^8.21.3",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "astro": "^5.13.10",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "google-auth-library": "^10.5.0",
+    "googleapis": "^166.0.0",
+    "lucide-react": "^0.562.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "recharts": "^3.6.0",
+    "resend": "^6.5.2",
     "sharp": "^0.34.3",
+    "stripe": "^20.0.0",
+    "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.13"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
   }
 }

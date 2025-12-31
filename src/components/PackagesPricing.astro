@@ -1,0 +1,117 @@
+---
+const services = [
+  {
+    id: "free-call",
+    name: "Free Initial Call",
+    price: 0,
+    duration: 30,
+    description:
+      "A complimentary 30-minute discovery session to explore your goals and understand how coaching can support you.",
+    cta: "Book Free Call",
+    href: "/booking/free-call",
+    highlight: true,
+  },
+  {
+    id: "clarifying-session",
+    name: "1:1 Coaching Session – Clarifying",
+    price: 69,
+    duration: 45,
+    description:
+      "A focused 45-minute deep dive designed to bring clarity, direction, and actionable next steps.",
+    cta: "Book Session",
+    href: "/booking/clarifying-session",
+  },
+  {
+    id: "breakthrough-package",
+    name: "Breakthrough Coaching Package – 4 Sessions",
+    price: 290,
+    duration: 4 * 60,
+    description:
+      "Four transformative sessions (60 mins each) to spark momentum, accountability, and measurable progress.",
+    cta: "Start Breakthrough",
+    href: "/booking/breakthrough-package",
+  },
+  {
+    id: "transformational-package",
+    name: "Transformational Coaching Package – 12 Sessions",
+    price: 790,
+    duration: 12 * 60,
+    description:
+      "A comprehensive 12-session program to rewire habits, sustain change, and unlock your best life.",
+    cta: "Begin Transformation",
+    href: "/booking/transformational-package",
+  },
+];
+
+const formatPrice = (value: number) =>
+  value === 0 ? "Free" : new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(value);
+
+const formatDuration = (minutes: number) => {
+  if (minutes < 60) return `${minutes} mins`;
+  if (minutes % 60 === 0) {
+    const hours = minutes / 60;
+    return `${hours} hr${hours > 1 ? "s" : ""}`;
+  }
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  return `${hours} hr ${mins} mins`;
+};
+---
+
+<section class="py-20 sm:py-28 bg-gray-50" id="services">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <p class="text-xs tracking-[0.3em] uppercase text-[#D4AF37] mb-3">Services</p>
+      <h2 class="text-3xl sm:text-4xl font-semibold text-ink mb-4">Tailored Coaching Experiences</h2>
+      <p class="text-base sm:text-lg text-gray-600">
+        Choose the container that matches your goals—from a free clarity call to a full transformational immersion.
+      </p>
+    </div>
+
+    <div class="grid gap-6 sm:gap-8 md:grid-cols-2">
+      {services.map((service) => (
+        <article
+          class={`group relative rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#D4AF37]/60 ${
+            service.highlight ? "ring-2 ring-[#D4AF37]/40" : ""
+          }`}
+          id={service.id}
+        >
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-semibold text-ink">{service.name}</h3>
+            {service.highlight && (
+              <span class="text-xs font-semibold uppercase tracking-wide text-[#D4AF37]">Popular</span>
+            )}
+          </div>
+
+          <p class="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
+
+          <div class="flex flex-wrap items-center gap-4 mb-8">
+            <div>
+              <p class="text-3xl font-bold text-ink">{formatPrice(service.price)}</p>
+              <p class="text-sm text-gray-500">{service.price === 0 ? "No commitment" : "Pay per program"}</p>
+            </div>
+
+            <div class="ml-auto text-right">
+              <p class="text-sm font-medium text-gray-500">Duration</p>
+              <p class="text-lg font-semibold text-ink">{formatDuration(service.duration)}</p>
+            </div>
+          </div>
+
+          <a
+            class={`inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-base font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+              service.highlight
+                ? "bg-black text-white hover:-translate-y-0.5 hover:bg-[#111] focus-visible:ring-[#D4AF37]"
+                : "border border-black text-black hover:bg-black hover:text-white hover:-translate-y-0.5 focus-visible:ring-black"
+            }`}
+            href={service.href}
+          >
+            {service.cta}
+            <svg class="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
