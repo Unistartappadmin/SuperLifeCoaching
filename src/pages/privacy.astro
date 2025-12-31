@@ -1,0 +1,586 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { Shield, Lock, Eye, FileText, Users, Globe } from 'lucide-react';
+
+const pageTitle = "Privacy Policy | SuperLife Coaching";
+const pageDescription =
+  "Learn how SuperLife Coaching collects, uses, and protects your personal data.";
+
+const quickLinks = [
+  { title: "Data Collection", href: "#data-collection" },
+  { title: "How We Use Data", href: "#use-data" },
+  { title: "Your Rights", href: "#your-rights" },
+  { title: "Security", href: "#security" },
+  { title: "Contact Us", href: "#contact" },
+];
+
+---
+
+<SiteLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-white via-gray-50/50 to-white py-20 sm:py-28">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center" data-animate="fade-in">
+        <!-- Decorative Element -->
+        <div class="mb-6 inline-block">
+          <div class="w-16 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+        </div>
+
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/20 mb-6">
+          <FileText className="w-4 h-4 text-[#D4AF37]" client:load />
+          <span class="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-semibold">Legal Document</span>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#0A0A0A] mb-6 tracking-tight leading-tight">
+          Privacy <span class="text-[#D4AF37]">Policy</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-xl sm:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-4">
+          Your privacy and data security are our top priorities
+        </p>
+
+        <!-- Last Updated -->
+        <p class="text-sm text-gray-500 flex items-center justify-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          Last updated: March 11, 2025
+        </p>
+
+        <!-- Decorative Element -->
+        <div class="mt-8 inline-block">
+          <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Background Decoration -->
+    <div class="absolute top-0 right-0 -z-10 opacity-5">
+      <svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="300" cy="300" r="250" stroke="#D4AF37" stroke-width="2"/>
+        <circle cx="300" cy="300" r="200" stroke="#D4AF37" stroke-width="2"/>
+        <circle cx="300" cy="300" r="150" stroke="#D4AF37" stroke-width="2"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Trust Badges Section -->
+  <section class="py-12 bg-white border-y border-gray-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- GDPR Compliant Badge -->
+        <div class="flex items-start gap-4 p-6 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:border-[#D4AF37]/20 transition-all duration-300">
+          <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-[#D4AF37]/10 to-[#D4AF37]/5 flex items-center justify-center">
+            <Shield className="w-6 h-6 text-[#D4AF37]" client:load />
+          </div>
+          <div>
+            <h3 class="font-bold text-[#0A0A0A] mb-1">GDPR Compliant</h3>
+            <p class="text-sm text-gray-600">Full compliance with data protection regulations</p>
+          </div>
+        </div>
+
+        <!-- Encrypted Data Badge -->
+        <div class="flex items-start gap-4 p-6 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:border-[#D4AF37]/20 transition-all duration-300">
+          <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-[#D4AF37]/10 to-[#D4AF37]/5 flex items-center justify-center">
+            <Lock className="w-6 h-6 text-[#D4AF37]" client:load />
+          </div>
+          <div>
+            <h3 class="font-bold text-[#0A0A0A] mb-1">Encrypted Data</h3>
+            <p class="text-sm text-gray-600">Industry-standard encryption protocols</p>
+          </div>
+        </div>
+
+        <!-- Transparent Badge -->
+        <div class="flex items-start gap-4 p-6 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:border-[#D4AF37]/20 transition-all duration-300">
+          <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-[#D4AF37]/10 to-[#D4AF37]/5 flex items-center justify-center">
+            <Eye className="w-6 h-6 text-[#D4AF37]" client:load />
+          </div>
+          <div>
+            <h3 class="font-bold text-[#0A0A0A] mb-1">Transparent</h3>
+            <p class="text-sm text-gray-600">Clear communication about data practices</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Navigation -->
+  <section class="py-8 bg-gray-50/50 sticky top-0 z-10 backdrop-blur-sm border-b border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <span class="text-sm font-semibold text-gray-500 mr-2">Quick Links:</span>
+        {quickLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-700 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-300 hover:shadow-md"
+          >
+            {link.title}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Introduction Box -->
+      <div class="mb-12 p-8 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-[#D4AF37]/10 to-[#D4AF37]/5 flex items-center justify-center mt-1">
+            <FileText className="w-6 h-6 text-[#D4AF37]" client:load />
+          </div>
+          <div class="prose prose-lg max-w-none">
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+              This Privacy Policy describes Our policies and procedures on the collection,
+              use and disclosure of Your information when You use the Service and tells You
+              about Your privacy rights and how the law protects You.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              We use Your Personal Data to provide and improve the Service. By using the
+              Service, You agree to the collection and use of information in accordance with
+              this Privacy Policy.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose prose-lg prose-gray max-w-none
+        prose-headings:text-[#0A0A0A] prose-headings:font-bold prose-headings:tracking-tight
+        prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:pb-3 prose-h2:border-b prose-h2:border-gray-200
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-[#D4AF37]
+        prose-h4:text-lg prose-h4:mt-6 prose-h4:mb-3 prose-h4:font-semibold
+        prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4
+        prose-strong:text-[#0A0A0A] prose-strong:font-bold
+        prose-ul:my-4 prose-ul:space-y-2
+        prose-li:text-gray-700">
+
+        <h2 id="definitions">Interpretation and Definitions</h2>
+        <h3>Interpretation</h3>
+        <p>
+          The words of which the initial letter is capitalized have meanings defined
+          under the following conditions. The following definitions shall have the same
+          meaning regardless of whether they appear in singular or in plural.
+        </p>
+
+        <h3>Definitions</h3>
+        <p>For the purposes of this Privacy Policy:</p>
+        <ul>
+          <li><strong>Account</strong> means a unique account created for You to access our Service or parts of our Service.</li>
+          <li><strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party.</li>
+          <li><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our") refers to SuperLife Coaching.</li>
+          <li><strong>Cookies</strong> are small files that are placed on Your computer or device by a website.</li>
+          <li><strong>Country</strong> refers to: United Kingdom.</li>
+          <li><strong>Device</strong> means any device that can access the Service such as a computer, cellphone or tablet.</li>
+          <li><strong>Personal Data</strong> is any information that relates to an identified or identifiable individual.</li>
+          <li><strong>Service</strong> refers to the Website.</li>
+          <li><strong>Service Provider</strong> means any person who processes data on behalf of the Company.</li>
+          <li><strong>Usage Data</strong> refers to data collected automatically, generated by the use of the Service.</li>
+          <li><strong>Website</strong> refers to SuperLife Coaching, accessible from https://superlifecoaching.com/.</li>
+          <li><strong>You</strong> means the individual accessing or using the Service, or the company or legal entity on behalf of which such individual is accessing or using the Service.</li>
+        </ul>
+
+        <h2 id="data-collection">Collecting and Using Your Personal Data</h2>
+
+        <!-- Data Collection Highlight Box -->
+        <div class="not-prose my-8 p-6 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+              <Users className="w-5 h-5 text-blue-600" client:load />
+            </div>
+            <div>
+              <h4 class="font-bold text-[#0A0A0A] mb-2">What Data We Collect</h4>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                We only collect data necessary to provide you with exceptional coaching services and improve your experience.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Types of Data Collected</h3>
+        <h4>Personal Data</h4>
+        <p>
+          While using Our Service, We may ask You to provide Us with certain personally
+          identifiable information that can be used to contact or identify You. Personally
+          identifiable information may include, but is not limited to:
+        </p>
+        <ul>
+          <li>Email address</li>
+          <li>First name and last name</li>
+          <li>Phone number</li>
+          <li>Address, State, Province, ZIP/Postal code, City</li>
+        </ul>
+
+        <h4>Usage Data</h4>
+        <p>
+          Usage Data is collected automatically when using the Service. Usage Data may
+          include information such as Your Device's Internet Protocol address (IP address),
+          browser type, browser version, the pages of our Service that You visit, the time
+          and date of Your visit, the time spent on those pages, unique device identifiers
+          and other diagnostic data.
+        </p>
+        <p>
+          When You access the Service by or through a mobile device, We may collect certain
+          information automatically, including the type of mobile device You use, Your
+          mobile device unique ID, the IP address of Your mobile device, Your mobile
+          operating system, the type of mobile Internet browser You use, unique device
+          identifiers and other diagnostic data.
+        </p>
+        <p>
+          We may also collect information that Your browser sends whenever You visit our
+          Service or when You access the Service by or through a mobile device.
+        </p>
+
+        <h3>Tracking Technologies and Cookies</h3>
+        <p>
+          We use Cookies and similar tracking technologies to track the activity on Our
+          Service and store certain information. Tracking technologies used are beacons,
+          tags, and scripts to collect and track information and to improve and analyze
+          Our Service.
+        </p>
+        <p>The technologies We use may include:</p>
+        <ul>
+          <li><strong>Cookies or Browser Cookies.</strong> A cookie is a small file placed on Your Device.</li>
+          <li><strong>Web Beacons.</strong> Certain sections of our Service and our emails may contain small electronic files known as web beacons.</li>
+        </ul>
+        <p>
+          Cookies can be "Persistent" or "Session" Cookies. Persistent Cookies remain on
+          Your device when You go offline, while Session Cookies are deleted as soon as You
+          close Your web browser.
+        </p>
+        <p>We use both Session and Persistent Cookies for the purposes set out below:</p>
+        <ul>
+          <li><strong>Necessary / Essential Cookies.</strong> Session Cookies administered by Us. These Cookies are essential to provide You with services available through the Website and to enable You to use some of its features.</li>
+          <li><strong>Cookies Policy / Notice Acceptance Cookies.</strong> Persistent Cookies administered by Us. These Cookies identify if users have accepted the use of cookies on the Website.</li>
+          <li><strong>Functionality Cookies.</strong> Persistent Cookies administered by Us. These Cookies allow us to remember choices You make when You use the Website, such as remembering your login details or language preference.</li>
+        </ul>
+        <p>
+          For more information about the cookies we use and your choices regarding cookies,
+          please visit our Cookies Policy or the Cookies section of this Privacy Policy.
+        </p>
+
+        <h3 id="use-data">Use of Your Personal Data</h3>
+
+        <!-- Usage Highlight Box -->
+        <div class="not-prose my-8 p-6 rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 border border-green-100">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
+              <Globe className="w-5 h-5 text-green-600" client:load />
+            </div>
+            <div>
+              <h4 class="font-bold text-[#0A0A0A] mb-2">How We Use Your Information</h4>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                Your data helps us deliver personalized coaching experiences and continuously improve our services.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p>The Company may use Personal Data for the following purposes:</p>
+        <ul>
+          <li><strong>To provide and maintain our Service</strong>, including to monitor the usage of our Service.</li>
+          <li><strong>To manage Your Account</strong> and your registration as a user of the Service.</li>
+          <li><strong>For the performance of a contract</strong> for products, items or services You have purchased or any other contract with Us through the Service.</li>
+          <li><strong>To contact You</strong> by email, telephone, SMS, or other equivalent forms of electronic communication.</li>
+          <li><strong>To provide You</strong> with news, special offers and general information about services unless You have opted out.</li>
+          <li><strong>To manage Your requests</strong> and support inquiries.</li>
+          <li><strong>For business transfers</strong> in the event of a merger, sale, restructuring or similar transaction.</li>
+          <li><strong>For other purposes</strong> such as data analysis, usage trends, and improving the Service.</li>
+        </ul>
+
+        <h3>Sharing Your Personal Information</h3>
+        <p>We may share Your personal information in the following situations:</p>
+        <ul>
+          <li>With Service Providers to monitor and analyze the use of our Service or to contact You.</li>
+          <li>For business transfers during negotiations of any merger, sale of Company assets, financing, or acquisition.</li>
+          <li>With Affiliates under common control with Us, who are required to honor this Privacy Policy.</li>
+          <li>With business partners to offer You certain products, services or promotions.</li>
+          <li>With other users when You share information in public areas, where it may be publicly distributed outside.</li>
+          <li>With Your consent for any other purpose.</li>
+        </ul>
+
+        <h2>Retention of Your Personal Data</h2>
+        <p>
+          The Company will retain Your Personal Data only for as long as is necessary for
+          the purposes set out in this Privacy Policy. We will retain and use Your Personal
+          Data to the extent necessary to comply with our legal obligations, resolve
+          disputes, and enforce our legal agreements and policies.
+        </p>
+        <p>
+          The Company will also retain Usage Data for internal analysis purposes. Usage
+          Data is generally retained for a shorter period of time, except when this data is
+          used to strengthen the security or to improve the functionality of Our Service,
+          or We are legally obligated to retain this data for longer time periods.
+        </p>
+
+        <h2>Transfer of Your Personal Data</h2>
+        <p>
+          Your information, including Personal Data, is processed at the Company's operating
+          offices and in any other places where the parties involved in the processing are
+          located. It means that this information may be transferred to and maintained on
+          computers located outside of Your state, province, country or other governmental
+          jurisdiction where the data protection laws may differ from those from Your
+          jurisdiction.
+        </p>
+        <p>
+          Your consent to this Privacy Policy followed by Your submission of such information
+          represents Your agreement to that transfer.
+        </p>
+        <p>
+          The Company will take all steps reasonably necessary to ensure that Your data is
+          treated securely and in accordance with this Privacy Policy and no transfer of
+          Your Personal Data will take place to an organization or a country unless there are
+          adequate controls in place including the security of Your data and other personal
+          information.
+        </p>
+
+        <h2 id="your-rights">Delete Your Personal Data</h2>
+
+        <!-- Your Rights Highlight Box -->
+        <div class="not-prose my-8 p-6 rounded-xl bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
+              <Shield className="w-5 h-5 text-amber-600" client:load />
+            </div>
+            <div>
+              <h4 class="font-bold text-[#0A0A0A] mb-2">Your Rights & Control</h4>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                You have full control over your personal data. Request access, corrections, or deletion at any time.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          You have the right to delete or request that We assist in deleting the Personal
+          Data that We have collected about You.
+        </p>
+        <p>
+          Our Service may give You the ability to delete certain information about You from
+          within the Service. You may update, amend, or delete Your information at any time
+          by signing in to Your Account and visiting the account settings section that
+          allows you to manage Your personal information.
+        </p>
+        <p>
+          You may also contact Us to request access to, correct, or delete any personal
+          information that You have provided to Us. Please note that We may need to retain
+          certain information when we have a legal obligation or lawful basis to do so.
+        </p>
+
+        <h2>Disclosure of Your Personal Data</h2>
+        <h3>Business Transactions</h3>
+        <p>
+          If the Company is involved in a merger, acquisition or asset sale, Your Personal
+          Data may be transferred. We will provide notice before Your Personal Data is
+          transferred and becomes subject to a different Privacy Policy.
+        </p>
+        <h3>Law enforcement</h3>
+        <p>
+          Under certain circumstances, the Company may be required to disclose Your Personal
+          Data if required to do so by law or in response to valid requests by public
+          authorities (e.g. a court or a government agency).
+        </p>
+        <h3>Other legal requirements</h3>
+        <p>
+          The Company may disclose Your Personal Data in the good faith belief that such
+          action is necessary to:
+        </p>
+        <ul>
+          <li>Comply with a legal obligation</li>
+          <li>Protect and defend the rights or property of the Company</li>
+          <li>Prevent or investigate possible wrongdoing in connection with the Service</li>
+          <li>Protect the personal safety of Users of the Service or the public</li>
+          <li>Protect against legal liability</li>
+        </ul>
+
+        <h2 id="security">Security of Your Personal Data</h2>
+
+        <!-- Security Highlight Box -->
+        <div class="not-prose my-8 p-6 rounded-xl bg-gradient-to-br from-purple-50 to-violet-50 border border-purple-100">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
+              <Lock className="w-5 h-5 text-purple-600" client:load />
+            </div>
+            <div>
+              <h4 class="font-bold text-[#0A0A0A] mb-2">Enterprise-Grade Security</h4>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                We implement industry-leading security measures including encryption, secure servers, and regular security audits.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          The security of Your Personal Data is important to Us, but remember that no
+          method of transmission over the Internet, or method of electronic storage is
+          100% secure. While We strive to use commercially acceptable means to protect Your
+          Personal Data, We cannot guarantee its absolute security.
+        </p>
+
+        <h2>Children's Privacy</h2>
+        <p>
+          Our Service does not address anyone under the age of 13. We do not knowingly
+          collect personally identifiable information from anyone under the age of 13.
+          If You are a parent or guardian and You are aware that Your child has provided
+          Us with Personal Data, please contact Us. If We become aware that We have collected
+          Personal Data from anyone under the age of 13 without verification of parental
+          consent, We take steps to remove that information from Our servers.
+        </p>
+        <p>
+          If We need to rely on consent as a legal basis for processing Your information and
+          Your country requires consent from a parent, We may require Your parent's consent
+          before We collect and use that information.
+        </p>
+
+        <h2>Links to Other Websites</h2>
+        <p>
+          Our Service may contain links to other websites that are not operated by Us. If You
+          click on a third party link, You will be directed to that third party's site. We
+          strongly advise You to review the Privacy Policy of every site You visit.
+        </p>
+        <p>
+          We have no control over and assume no responsibility for the content, privacy
+          policies or practices of any third party sites or services.
+        </p>
+
+        <h2>Changes to this Privacy Policy</h2>
+        <p>
+          We may update Our Privacy Policy from time to time. We will notify You of any changes
+          by posting the new Privacy Policy on this page. We will let You know via email and/or
+          a prominent notice on Our Service, prior to the change becoming effective and update
+          the "Last updated" date at the top of this Privacy Policy.
+        </p>
+        <p>
+          You are advised to review this Privacy Policy periodically for any changes. Changes
+          to this Privacy Policy are effective when they are posted on this page.
+        </p>
+
+        <h2 id="contact">Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy, You can contact us:</p>
+        <ul>
+          <li>By email: <a href="mailto:contact@superlifecoaching.com" class="text-[#D4AF37] hover:underline">contact@superlifecoaching.com</a></li>
+          <li>By visiting this page: <a href="/contact" class="text-[#D4AF37] hover:underline">Contact Form</a></li>
+        </ul>
+
+        <!-- Contact Highlight Box -->
+        <div class="not-prose my-8 p-8 rounded-2xl bg-gradient-to-br from-gray-50 to-white border-2 border-[#D4AF37]/20 shadow-lg">
+          <div class="text-center">
+            <h4 class="text-xl font-bold text-[#0A0A0A] mb-3">Questions About Your Privacy?</h4>
+            <p class="text-gray-700 mb-6 leading-relaxed">
+              Our team is here to help. We're committed to transparency and protecting your data rights.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/contact"
+                class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-[#0A0A0A] rounded-full hover:bg-[#D4AF37] transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-105"
+              >
+                Contact Our Team
+              </a>
+              <a
+                href="mailto:contact@superlifecoaching.com"
+                class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-[#0A0A0A] bg-white border-2 border-[#0A0A0A] rounded-full hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-300"
+              >
+                Send Email
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-b from-white to-gray-50 border-t border-gray-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-block mb-6">
+        <div class="w-16 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl font-bold text-[#0A0A0A] mb-6">
+        Ready to Start Your Transformation?
+      </h2>
+      <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+        Experience personalized coaching in a secure, private environment where your data is protected
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/booking"
+          class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-[#0A0A0A] rounded-full hover:bg-[#D4AF37] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+        >
+          Book Your Session
+        </a>
+        <a
+          href="/services"
+          class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-[#0A0A0A] bg-white border-2 border-[#0A0A0A] rounded-full hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-300"
+        >
+          Explore Services
+        </a>
+      </div>
+    </div>
+  </section>
+</SiteLayout>
+
+<style>
+  /* Fade-in animation */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  [data-animate="fade-in"] {
+    animation: fade-in 0.8s ease-out forwards;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Selection color */
+  ::selection {
+    background-color: #D4AF37;
+    color: white;
+  }
+
+  /* Custom scrollbar for better UX */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #D4AF37;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C5A028;
+  }
+
+  /* Enhanced link styles */
+  .prose a {
+    color: #D4AF37;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .prose a:hover {
+    text-decoration: underline;
+  }
+
+  /* Smooth transitions for all interactive elements */
+  a, button {
+    transition: all 0.3s ease;
+  }
+</style>

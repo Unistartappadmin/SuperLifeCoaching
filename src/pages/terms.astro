@@ -1,0 +1,511 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { FileText, Scale, ShieldCheck, Users, AlertCircle, Gavel } from 'lucide-react';
+
+const pageTitle = "Terms & Conditions | SuperLife Coaching";
+const pageDescription =
+  "Review the terms and conditions for using SuperLife Coaching services and website.";
+
+const quickLinks = [
+  { title: "Definitions", href: "#definitions" },
+  { title: "User Rights", href: "#user-rights" },
+  { title: "Liability", href: "#liability" },
+  { title: "Governing Law", href: "#governing-law" },
+  { title: "Contact", href: "#contact" },
+];
+---
+
+<SiteLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-white via-gray-50/50 to-white py-20 sm:py-28">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center" data-animate="fade-in">
+        <!-- Decorative Element -->
+        <div class="mb-6 inline-block">
+          <div class="w-16 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+        </div>
+
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/20 mb-6">
+          <Scale className="w-4 h-4 text-[#D4AF37]" client:load />
+          <span class="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-semibold">Legal Agreement</span>
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-[#0A0A0A] mb-6 tracking-tight leading-tight">
+          Terms & <span class="text-[#D4AF37]">Conditions</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-xl sm:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-4">
+          Clear, fair terms for our coaching services
+        </p>
+
+        <!-- Last Updated -->
+        <p class="text-sm text-gray-500 flex items-center justify-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          Last updated: March 11, 2025
+        </p>
+
+        <!-- Decorative Element -->
+        <div class="mt-8 inline-block">
+          <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Background Decoration -->
+    <div class="absolute top-0 right-0 -z-10 opacity-5">
+      <svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="300" cy="300" r="250" stroke="#D4AF37" stroke-width="2"/>
+        <circle cx="300" cy="300" r="200" stroke="#D4AF37" stroke-width="2"/>
+        <circle cx="300" cy="300" r="150" stroke="#D4AF37" stroke-width="2"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Key Points Section -->
+  <section class="py-12 bg-white border-y border-gray-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Fair Terms Badge -->
+        <div class="flex items-start gap-4 p-6 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:border-[#D4AF37]/20 transition-all duration-300">
+          <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-[#D4AF37]/10 to-[#D4AF37]/5 flex items-center justify-center">
+            <ShieldCheck className="w-6 h-6 text-[#D4AF37]" client:load />
+          </div>
+          <div>
+            <h3 class="font-bold text-[#0A0A0A] mb-1">Fair & Transparent</h3>
+            <p class="text-sm text-gray-600">Clear terms without hidden clauses</p>
+          </div>
+        </div>
+
+        <!-- User Protection Badge -->
+        <div class="flex items-start gap-4 p-6 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:border-[#D4AF37]/20 transition-all duration-300">
+          <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-[#D4AF37]/10 to-[#D4AF37]/5 flex items-center justify-center">
+            <Users className="w-6 h-6 text-[#D4AF37]" client:load />
+          </div>
+          <div>
+            <h3 class="font-bold text-[#0A0A0A] mb-1">User Focused</h3>
+            <p class="text-sm text-gray-600">Designed to protect your rights</p>
+          </div>
+        </div>
+
+        <!-- Legal Compliance Badge -->
+        <div class="flex items-start gap-4 p-6 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:border-[#D4AF37]/20 transition-all duration-300">
+          <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-[#D4AF37]/10 to-[#D4AF37]/5 flex items-center justify-center">
+            <Gavel className="w-6 h-6 text-[#D4AF37]" client:load />
+          </div>
+          <div>
+            <h3 class="font-bold text-[#0A0A0A] mb-1">Legally Compliant</h3>
+            <p class="text-sm text-gray-600">Adheres to all applicable laws</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Navigation -->
+  <section class="py-8 bg-gray-50/50 sticky top-0 z-10 backdrop-blur-sm border-b border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <span class="text-sm font-semibold text-gray-500 mr-2">Quick Links:</span>
+        {quickLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-700 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-300 hover:shadow-md"
+          >
+            {link.title}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Introduction Box -->
+      <div class="mb-12 p-8 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-[#D4AF37]/10 to-[#D4AF37]/5 flex items-center justify-center mt-1">
+            <AlertCircle className="w-6 h-6 text-[#D4AF37]" client:load />
+          </div>
+          <div class="prose prose-lg max-w-none">
+            <p class="text-lg text-gray-700 leading-relaxed">
+              Please read these terms and conditions carefully before using Our Service. By accessing or using our coaching services, you agree to be bound by these terms.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose prose-lg prose-gray max-w-none
+        prose-headings:text-[#0A0A0A] prose-headings:font-bold prose-headings:tracking-tight
+        prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:pb-3 prose-h2:border-b prose-h2:border-gray-200
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-[#D4AF37]
+        prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4
+        prose-strong:text-[#0A0A0A] prose-strong:font-bold
+        prose-ul:my-4 prose-ul:space-y-2
+        prose-li:text-gray-700">
+
+        <h2 id="definitions">Interpretation and Definitions</h2>
+        <h3>Interpretation</h3>
+        <p>
+          The words of which the initial letter is capitalized have meanings defined under
+          the following conditions. The following definitions shall have the same meaning
+          regardless of whether they appear in singular or in plural.
+        </p>
+
+        <h3>Definitions</h3>
+        <p>For the purposes of these Terms and Conditions:</p>
+        <ul>
+          <li><strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party.</li>
+          <li><strong>Country</strong> refers to: United Kingdom.</li>
+          <li><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our") refers to SuperLife Coaching.</li>
+          <li><strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</li>
+          <li><strong>Service</strong> refers to the Website.</li>
+          <li><strong>Terms and Conditions</strong> (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service.</li>
+          <li><strong>Third-party Social Media Service</strong> means any services or content provided by a third-party that may be displayed or made available by the Service.</li>
+          <li><strong>Website</strong> refers to SuperLife Coaching, accessible from https://superlifecoaching.com/.</li>
+          <li><strong>You</strong> means the individual accessing or using the Service, or the company or other legal entity on behalf of which such individual is accessing or using the Service.</li>
+        </ul>
+
+        <h2 id="user-rights">Acknowledgment</h2>
+
+        <!-- User Rights Highlight Box -->
+        <div class="not-prose my-8 p-6 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+              <Users className="w-5 h-5 text-blue-600" client:load />
+            </div>
+            <div>
+              <h4 class="font-bold text-[#0A0A0A] mb-2">Your Agreement</h4>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                By using our services, you acknowledge and accept these terms. Please review them carefully before proceeding.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          These are the Terms and Conditions governing the use of this Service and the
+          agreement that operates between You and the Company. These Terms and Conditions
+          set out the rights and obligations of all users regarding the use of the Service.
+        </p>
+        <p>
+          Your access to and use of the Service is conditioned on Your acceptance of and
+          compliance with these Terms and Conditions. These Terms and Conditions apply to
+          all visitors, users and others who access or use the Service.
+        </p>
+        <p>
+          By accessing or using the Service You agree to be bound by these Terms and
+          Conditions. If You disagree with any part of these Terms and Conditions then You
+          may not access the Service.
+        </p>
+        <p>
+          You represent that you are over the age of 18. The Company does not permit those
+          under 18 to use the Service.
+        </p>
+        <p>
+          Your access to and use of the Service is also conditioned on Your acceptance of
+          and compliance with the Privacy Policy of the Company. Please read Our Privacy
+          Policy carefully before using Our Service.
+        </p>
+
+        <h2>Links to Other Websites</h2>
+        <p>
+          Our Service may contain links to third-party web sites or services that are not
+          owned or controlled by the Company.
+        </p>
+        <p>
+          The Company has no control over, and assumes no responsibility for, the content,
+          privacy policies, or practices of any third party web sites or services. You further
+          acknowledge and agree that the Company shall not be responsible or liable for any
+          damage or loss caused by or in connection with the use of any such content, goods or
+          services available on or through any such web sites or services.
+        </p>
+        <p>
+          We strongly advise You to read the terms and conditions and privacy policies of any
+          third-party web sites or services that You visit.
+        </p>
+
+        <h2>Termination</h2>
+        <p>
+          We may terminate or suspend Your access immediately, without prior notice or
+          liability, for any reason whatsoever, including without limitation if You breach
+          these Terms and Conditions.
+        </p>
+        <p>Upon termination, Your right to use the Service will cease immediately.</p>
+
+        <h2 id="liability">Limitation of Liability</h2>
+
+        <!-- Liability Highlight Box -->
+        <div class="not-prose my-8 p-6 rounded-xl bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center">
+              <ShieldCheck className="w-5 h-5 text-amber-600" client:load />
+            </div>
+            <div>
+              <h4 class="font-bold text-[#0A0A0A] mb-2">Liability Protection</h4>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                Understanding the limits of liability helps protect both parties and ensures fair treatment.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          Notwithstanding any damages that You might incur, the entire liability of the Company
+          and any of its suppliers under any provision of these Terms and Your exclusive remedy
+          shall be limited to the amount actually paid by You through the Service or 100 USD if
+          You haven't purchased anything through the Service.
+        </p>
+        <p>
+          To the maximum extent permitted by applicable law, in no event shall the Company or
+          its suppliers be liable for any special, incidental, indirect, or consequential damages
+          whatsoever, including loss of profits, loss of data, business interruption, personal
+          injury, loss of privacy, or otherwise related to the use of or inability to use the
+          Service, even if the Company or any supplier has been advised of the possibility of
+          such damages.
+        </p>
+        <p>
+          Some states do not allow the exclusion of implied warranties or limitation of liability
+          for incidental or consequential damages, which means that some of the above limitations
+          may not apply. In these states, each party's liability will be limited to the greatest
+          extent permitted by law.
+        </p>
+
+        <h2>"AS IS" and "AS AVAILABLE" Disclaimer</h2>
+        <p>
+          The Service is provided to You "AS IS" and "AS AVAILABLE" and with all faults and
+          defects without warranty of any kind. To the maximum extent permitted under applicable
+          law, the Company disclaims all warranties, whether express, implied, statutory or
+          otherwise, including implied warranties of merchantability, fitness for a particular
+          purpose, title and non-infringement, and warranties that may arise out of course of
+          dealing or usage.
+        </p>
+        <p>
+          Without limiting the foregoing, the Company provides no warranty or undertaking that the
+          Service will meet Your requirements, be compatible or work with other software, be
+          uninterrupted, meet performance or reliability standards, be error free, or that any
+          errors will be corrected.
+        </p>
+        <p>
+          Neither the Company nor any provider makes any representation or warranty of any kind
+          regarding the operation or availability of the Service, the accuracy or reliability of
+          any information provided through the Service, or that the Service or its servers are free
+          of viruses or harmful components.
+        </p>
+        <p>
+          Some jurisdictions do not allow the exclusion of certain types of warranties or
+          limitations on applicable statutory rights, so some or all of the above exclusions and
+          limitations may not apply to You. In such cases, the exclusions and limitations set forth
+          in this section shall be applied to the greatest extent enforceable under applicable law.
+        </p>
+
+        <h2 id="governing-law">Governing Law</h2>
+
+        <!-- Governing Law Highlight Box -->
+        <div class="not-prose my-8 p-6 rounded-xl bg-gradient-to-br from-purple-50 to-violet-50 border border-purple-100">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
+              <Gavel className="w-5 h-5 text-purple-600" client:load />
+            </div>
+            <div>
+              <h4 class="font-bold text-[#0A0A0A] mb-2">Legal Jurisdiction</h4>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                These terms are governed by applicable laws and regulations to ensure legal compliance and protection.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          The laws of the Country, excluding its conflicts of law rules, shall govern these Terms
+          and Your use of the Service. Your use of the Application may also be subject to other
+          local, state, national, or international laws.
+        </p>
+
+        <h2>Disputes Resolution</h2>
+        <p>
+          If You have any concern or dispute about the Service, You agree to first try to resolve
+          the dispute informally by contacting the Company.
+        </p>
+
+        <h2>For European Union (EU) Users</h2>
+        <p>
+          If You are a European Union consumer, you will benefit from any mandatory provisions of
+          the law of the country in which You are resident.
+        </p>
+
+        <h2>United States Legal Compliance</h2>
+        <p>
+          You represent and warrant that (i) You are not located in a country that is subject to
+          the United States government embargo, or that has been designated by the United States
+          government as a "terrorist supporting" country, and (ii) You are not listed on any
+          United States government list of prohibited or restricted parties.
+        </p>
+
+        <h2>Severability and Waiver</h2>
+        <h3>Severability</h3>
+        <p>
+          If any provision of these Terms is held to be unenforceable or invalid, such provision
+          will be changed and interpreted to accomplish the objectives of such provision to the
+          greatest extent possible under applicable law and the remaining provisions will continue
+          in full force and effect.
+        </p>
+        <h3>Waiver</h3>
+        <p>
+          Except as provided herein, the failure to exercise a right or to require performance of
+          an obligation under these Terms shall not affect a party's ability to exercise such
+          right or require such performance at any time thereafter nor shall the waiver of a
+          breach constitute a waiver of any subsequent breach.
+        </p>
+
+        <h2>Translation Interpretation</h2>
+        <p>
+          These Terms and Conditions may have been translated if We have made them available to
+          You on our Service. You agree that the original English text shall prevail in the case
+          of a dispute.
+        </p>
+
+        <h2>Changes to These Terms and Conditions</h2>
+        <p>
+          We reserve the right, at Our sole discretion, to modify or replace these Terms at any
+          time. If a revision is material We will make reasonable efforts to provide at least 30
+          days' notice prior to any new terms taking effect. What constitutes a material change
+          will be determined at Our sole discretion.
+        </p>
+        <p>
+          By continuing to access or use Our Service after those revisions become effective, You
+          agree to be bound by the revised terms. If You do not agree to the new terms, in whole or
+          in part, please stop using the website and the Service.
+        </p>
+
+        <h2 id="contact">Contact Us</h2>
+        <p>If you have any questions about these Terms and Conditions, You can contact us:</p>
+        <ul>
+          <li>By email: <a href="mailto:contact@superlifecoaching.com" class="text-[#D4AF37] hover:underline">contact@superlifecoaching.com</a></li>
+          <li>By visiting this page: <a href="/contact" class="text-[#D4AF37] hover:underline">Contact Form</a></li>
+        </ul>
+
+        <!-- Contact Highlight Box -->
+        <div class="not-prose my-8 p-8 rounded-2xl bg-gradient-to-br from-gray-50 to-white border-2 border-[#D4AF37]/20 shadow-lg">
+          <div class="text-center">
+            <h4 class="text-xl font-bold text-[#0A0A0A] mb-3">Questions About These Terms?</h4>
+            <p class="text-gray-700 mb-6 leading-relaxed">
+              Our team is available to clarify any aspect of these terms and conditions.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/contact"
+                class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-[#0A0A0A] rounded-full hover:bg-[#D4AF37] transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-105"
+              >
+                Contact Our Team
+              </a>
+              <a
+                href="mailto:contact@superlifecoaching.com"
+                class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-[#0A0A0A] bg-white border-2 border-[#0A0A0A] rounded-full hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-300"
+              >
+                Send Email
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-b from-white to-gray-50 border-t border-gray-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-block mb-6">
+        <div class="w-16 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl font-bold text-[#0A0A0A] mb-6">
+        Ready to Transform Your Life?
+      </h2>
+      <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+        Join thousands who trust SuperLife Coaching for their personal development journey
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/booking"
+          class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-[#0A0A0A] rounded-full hover:bg-[#D4AF37] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+        >
+          Book Your Session
+        </a>
+        <a
+          href="/services"
+          class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-[#0A0A0A] bg-white border-2 border-[#0A0A0A] rounded-full hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all duration-300"
+        >
+          Explore Services
+        </a>
+      </div>
+    </div>
+  </section>
+</SiteLayout>
+
+<style>
+  /* Fade-in animation */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  [data-animate="fade-in"] {
+    animation: fade-in 0.8s ease-out forwards;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Selection color */
+  ::selection {
+    background-color: #D4AF37;
+    color: white;
+  }
+
+  /* Custom scrollbar for better UX */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #D4AF37;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C5A028;
+  }
+
+  /* Enhanced link styles */
+  .prose a {
+    color: #D4AF37;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .prose a:hover {
+    text-decoration: underline;
+  }
+
+  /* Smooth transitions for all interactive elements */
+  a, button {
+    transition: all 0.3s ease;
+  }
+</style>
